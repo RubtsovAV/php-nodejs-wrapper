@@ -160,7 +160,7 @@ abstract class ExternalRunner implements Runner
      */
     protected function evaluateScript($script)
     {
-        $process = $this->getNodeProcess('-e', $script);
+        $process = $this->getProcess('-e', $script);
 
         $process->run();
 
@@ -178,7 +178,7 @@ abstract class ExternalRunner implements Runner
      * @param $args
      * @return Process
      */
-    protected function getNodeProcess(...$args)
+    protected function getProcess(...$args)
     {
         $process = $this->builder
             ->setArguments($args)
