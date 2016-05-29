@@ -168,7 +168,6 @@ abstract class ExternalRunner implements Runner
      */
     protected function evaluateScript($script)
     {
-        var_dump($script);
         $process = $this->getProcess('-e', $script);
 
         $process->run();
