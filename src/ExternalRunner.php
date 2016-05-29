@@ -105,8 +105,8 @@ abstract class ExternalRunner implements Runner
         $runner = file_get_contents(__DIR__ . '/support/node_runner.js');
 
         if (!empty($this->sources)) {
-            $sources = implode("\n", $this->sources);
-            $source = "{$sources}\n{$source}";
+            $sources = implode("\n;", $this->sources);
+            $source = "{$sources};\n{$source}";
         }
 
         $source = str_replace('//--SOURCE--//', $source, $runner);
@@ -160,6 +160,7 @@ abstract class ExternalRunner implements Runner
      */
     protected function evaluateScript($script)
     {
+        var_dump($script);
         $process = $this->getProcess('-e', $script);
 
         $process->run();
@@ -193,6 +194,9 @@ abstract class ExternalRunner implements Runner
      */
     protected function prepareSource($source)
     {
+        if (empty($source)) {
+            return '';
+        }
         $source = utf8_encode($source);
         $source = json_encode("({$source})");
         $source = "return eval({$source})";
