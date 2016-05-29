@@ -63,10 +63,10 @@ abstract class ExternalRunner implements Runner
     /**
      * Executes a string of JavaScript and returns the result if available.
      *
-     * @param $source
+     * @param string $source
      * @return mixed
      */
-    public function execute($source)
+    public function execute($source = '')
     {
         $source = $this->encode($source);
 
