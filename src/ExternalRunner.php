@@ -59,6 +59,14 @@ abstract class ExternalRunner implements Runner
     {
         $this->sources = [$source];
     }
+    
+    /**
+     * @param string $source
+     */
+    public function addSource($source)
+    {
+        $this->sources[] = $source;
+    }
 
     /**
      * Executes a string of JavaScript and returns the result if available.
