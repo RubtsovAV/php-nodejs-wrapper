@@ -24,4 +24,13 @@ $nodejs->setSources([
     'z = function(x, y) { return x + y; }',
 ]);
 echo $nodejs->execute('z(3, y(3))');  // print 12
+
+// Example with the grab of output
+$nodejs->addSource('document = {
+    write: function(string) {
+        process.stdout.write(string); 
+    }
+};');
+$nodejs->addSource('document.write(z(3, y(3)))');
+echo $nodejs->execute();  // print 12
 ```
