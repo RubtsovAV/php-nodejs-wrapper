@@ -3,11 +3,25 @@
 })(function () {
     //--SOURCE--//
 }, function (program) {
-    var output, print = function (string) {
-        process.stdout.write('' + string);
+    var output = '',
+        sourceWrite = process.stdout.write,
+        print = function (string) {
+            sourceWrite.call(process.stdout, '' + string);
+        };
+    
+    process.stdout.write = function (string) { 
+        output += string; 
     };
-    try {
+        
+    try {        
         result = program();
+        if (output.length > 0) {
+            if (result) {
+                result = output + result;
+            } else {
+                result = output;
+            }
+        }
         if (typeof result == 'undefined' && result !== null) {
             print('["ok"]');
         } else {
