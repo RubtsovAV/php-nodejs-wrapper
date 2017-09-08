@@ -3,7 +3,7 @@
   "description": "NodeJS process wrapper.",
   "require": {
     "php" : ">=5.6.0",
-    "symfony/process": "~2.6"
+    "symfony/process": "~3.*"
   },
   "license": "MIT",
   "authors": [
